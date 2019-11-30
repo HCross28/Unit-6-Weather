@@ -41,11 +41,29 @@ var dayFiveHum = document.getElementById("#day-five-hum");
 
 //End 5 Day Vars ---------------------------------
 
+//API Info ==========================================================
 
+function buildQueryURL() {
+    var queryURL= "api.openweathermap.org/data/2.5/forecast?";
+    // API Key a77d24e09e19cc178f1b3fee67975325
+    var queryParams = { "api-key": "032e56ab27b59813544308bee5029b64" };
 
+    queryParams.q = $("#input")
+        .val()
+        .trim();
 
+    console.log("------------/nURL: " + queryURL + "/n-------------");
+    console.log(queryURL + $.param(queryParams));
+    return queryURL + $.param(queryParams);
 
+}
 
+var queryURL = buildQueryURL();
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then();
 
 
 });
