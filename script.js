@@ -43,9 +43,9 @@ var dayFiveHum = document.getElementById("#day-five-hum");
 
 //API Info ==========================================================
 
-function buildQueryURL() {
-    var queryURL= "api.openweathermap.org/data/2.5/forecast?";
-    // API Key a77d24e09e19cc178f1b3fee67975325
+/* function buildQueryURL() {
+    var queryURL= "api.openweathermap.org/data/2.5/weather?";  //forecast?
+    // API Key a77d24e09e19cc178f1b3fee67975325     032e56ab27b59813544308bee5029b64
     var queryParams = { "api-key": "032e56ab27b59813544308bee5029b64" };
 
     queryParams.q = $("#input")
@@ -63,7 +63,51 @@ var queryURL = buildQueryURL();
 $.ajax({
     url: queryURL,
     method: "GET"
-  }).then();
+  }).then(function(response){
+
+    
+        console.log(queryURL);
+
+       
+        console.log(response);
+
+  }); 
+*/
 
 
-});
+var APIKey = "a77d24e09e19cc178f1b3fee67975325"
+
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?" + "q=Houston,Texas&units=imperial&appid=" + APIKey;
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response){
+
+    
+        console.log(queryURL);
+
+       
+        console.log(response);
+
+
+        console.log("Wind Speed: " + response.wind.speed);
+        console.log("Humidity: " + response.main.humidity);
+        console.log("Temperature " + response.main.temp);
+
+        $("#title").html("<h2>" + response.name + "</h2>");
+        $("#temp").text("Temperature: " + response.main.temp);
+        $("#hum").text("Humidity: " + response.main.humidity);
+        $("#wind").text("Wind Speed: " + response.wind.speed);
+
+  }); 
+
+
+
+
+
+
+
+
+
+}); 
